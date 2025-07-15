@@ -1,4 +1,3 @@
-
 /*
  *
  * Provides the functions related to UNIX operating system.
@@ -29,17 +28,16 @@
 
 #include "../include/embeddingS1_unix.hpp"
 
-int main(int argc , char *argv[])
-{
-  // Initialize graph object.
-  embeddingS1_t the_graph;
+int main(int argc, char *argv[]) {
+    // Initialize graph object.
+    embeddingS1_t the_graph;
 
-  // Parses and sets options.
-  parse_options(argc, argv, the_graph);
+    // Parses and sets options.
+    parse_options(argc, argv, the_graph);
 
-  // Performs the embedding. 
-  the_graph.embed();
-  
-  // Returns successfully.
-  return EXIT_SUCCESS;
+    // Performs the embedding. 
+    the_graph.embed();
+
+    // Returns successfully.
+    return EXIT_SUCCESS;
 }

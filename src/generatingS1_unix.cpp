@@ -1,4 +1,3 @@
-
 /*
  *
  * Provides the functions related to UNIX operating system.
@@ -29,21 +28,19 @@
 
 #include "../include/generatingS1_unix.hpp"
 
-int main(int argc , char *argv[])
-{
-  // Initialize graph object.
-  generatingS1_t the_graph;
+int main(int argc, char *argv[]) {
+    // Initialize graph object.
+    generatingS1_t the_graph;
 
-  // Parses the options and continues if everything is in order.
-  if(parse_options(argc, argv, the_graph))
-  {
-    // Loads the hidden variables.
-    the_graph.load_hidden_variables();
+    // Parses the options and continues if everything is in order.
+    if (parse_options(argc, argv, the_graph)) {
+        // Loads the hidden variables.
+        the_graph.load_hidden_variables();
 
-    // Generates an edgelist.
-    the_graph.generate_edgelist();
-  }
+        // Generates an edgelist.
+        the_graph.generate_edgelist();
+    }
 
-  // Returns successfully.
-  return EXIT_SUCCESS;
+    // Returns successfully.
+    return EXIT_SUCCESS;
 }
