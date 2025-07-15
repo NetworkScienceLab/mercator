@@ -4,7 +4,7 @@ import sys
 import os
 import setuptools
 
-__version__ = '1.0.0'
+__version__ = '2.0.0'
 
 
 class get_pybind_include(object):
@@ -53,17 +53,25 @@ def has_flag(compiler, flagname):
 
 
 def cpp_flag(compiler):
-    """Return the -std=c++[11/14/17] compiler flag.
+    """Return the -std=c++[14/17/20] compiler flag.
 
-    The newer version is prefered over c++11 (when it is available).
+    The newer version is prefered over c++14 (when it is available).
     """
-    flags = ['-std=c++11']
+    flags = [
+        "-std=c++20",
+        "-std=c++17",
+        "-std=c++14",
+        # "-std=c++11", # C++11 does not support some templates used in the libs
+    ]
 
     for flag in flags:
-        if has_flag(compiler, flag): return flag
+        if has_flag(compiler, flag):
+            return flag
 
-    raise RuntimeError('Unsupported compiler -- at least C++11 support '
-                       'is needed!')
+    raise RuntimeError(f'Unsupported compiler -- at least '
+                       f'{flag.replace("-std=", "").upper()} '
+                       f'support is needed!'
+                       )
 
 
 class BuildExt(build_ext):
