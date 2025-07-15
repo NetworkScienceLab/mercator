@@ -123,7 +123,8 @@ void generatingS1_t::generate_edgelist(int width)
   if(BETA < 0)
   {
     std::cerr << "ERROR: The value of parameter beta must be provided." << std::endl;
-    std::terminate();
+    // std::terminate();
+    throw std::runtime_error("The value of parameter beta must be provided.");
   }
   // Sets the value of mu, if not provided.
   if(MU < 0)
@@ -155,7 +156,8 @@ void generatingS1_t::generate_edgelist(int width)
   if( !edgelist_file.is_open() )
   {
     std::cerr << "ERROR: Could not open file: " << edgelist_filename << "." << std::endl;
-    std::terminate();
+    // std::terminate();
+    throw std::runtime_error("Could not open file: " + edgelist_filename + ".");
   }
   // Writes the header.
   edgelist_file << "# =~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=" << std::endl;
@@ -229,7 +231,8 @@ void generatingS1_t::load_hidden_variables()
   if( !hidden_variables_file.is_open() )
   {
     std::cerr << "Could not open file: " << HIDDEN_VARIABLES_FILENAME << "." << std::endl;
-    std::terminate();
+    // std::terminate();
+    throw std::runtime_error("Could not open file: " + HIDDEN_VARIABLES_FILENAME + ".");
   }
   // Extracts the beta and mu parameters if the file is a native.
   if(NATIVE_INPUT_FILE)
@@ -315,7 +318,8 @@ void generatingS1_t::save_vertices_properties(std::vector<int>& rdegree, std::ve
   if( !hidden_variables_file.is_open() )
   {
     std::cerr << "Could not open file: " << hidden_variables_filename << "." << std::endl;
-    std::terminate();
+    // std::terminate();
+    throw std::runtime_error("Could not open file: " + hidden_variables_filename + ".");
   }
   // Writes the header.
   hidden_variables_file << "#";

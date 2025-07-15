@@ -712,7 +712,8 @@ void embeddingS1_t::rewire_atzero()
     std::cerr << "Extremely weak geometry, P(C > c | beta = 0) = " << Pbis0 <<                                 std::endl;
     std::cerr << "Mercator unable to determine beta. Please rerun the program with a manually chosen beta." << std::endl;
     std::cerr << std::endl;
-    std::terminate();
+    // std::terminate();
+    throw std::runtime_error("Extremely weak geometry, unable to determine beta.");
   }
 }
 
@@ -1254,7 +1255,8 @@ void embeddingS1_t::find_initial_ordering(std::vector<int> &ordering, std::vecto
             {
               // Just a verification.
               std::cerr << "Warning. Expected angular distance out of range." << std::endl;
-              std::terminate();
+              // std::terminate();
+              throw std::runtime_error("Expected angular distance out of range.");
             }
             // Transforms the arc length distance into Euclidean distances (unit circle).
             expected_distance = 2 * std::sin(expected_distance / 2);
@@ -1347,7 +1349,8 @@ void embeddingS1_t::find_initial_ordering(std::vector<int> &ordering, std::vecto
       if(ncv == nb_vertices)
       {
         std::cerr << std::endl << "The algorithm computing the eigenvectors (Spectra library) cannot converge at all... Exiting." << std::endl << std::endl;
-        std::terminate();
+        // std::terminate();
+        throw std::runtime_error("The algorithm computing the eigenvectors (Spectra library) cannot converge at all... Exiting.");
       }
       if(!QUIET_MODE) { std::clog << " Convergence not reached." << std::endl; }
       // Increases the convergence parameter.
@@ -2028,7 +2031,8 @@ void embeddingS1_t::load_already_inferred_parameters()
   if( !hidden_variables_file.is_open() )
   {
     std::cerr << "Could not open file: " << ALREADY_INFERRED_PARAMETERS_FILENAME << "." << std::endl;
-    std::terminate();
+    // std::terminate();
+    throw std::runtime_error("Could not open file: " + ALREADY_INFERRED_PARAMETERS_FILENAME + ".");
   }
   // Extracts the beta and mu parameters.
   // Ignores the first 9 lines of the file.
@@ -2109,7 +2113,8 @@ void embeddingS1_t::load_edgelist()
   if( !edgelist_file.is_open() )
   {
     std::cerr << "Could not open file: " << EDGELIST_FILENAME << "." << std::endl;
-    std::terminate();
+    // std::terminate();
+    throw std::runtime_error("Could not open file: " + EDGELIST_FILENAME + ".");
   }
   else
   {
@@ -2424,7 +2429,8 @@ void embeddingS1_t::save_inferred_connection_probability()
   if( !pconn_file.is_open() )
   {
     std::cerr << "Could not open file: " << pconn_filename << "." << std::endl;
-    std::terminate();
+    // std::terminate();
+    throw std::runtime_error("Could not open file: " + pconn_filename + ".");
   }
   pconn_file << "#";
   pconn_file << std::setw(width_values - 1) << "RescaledDist" << " ";
@@ -2476,7 +2482,8 @@ void embeddingS1_t::save_inferred_coordinates()
   if( !coordinates_file.is_open() )
   {
     std::cerr << "Could not open file: " << coordinates_filename << "." << std::endl;
-    std::terminate();
+    // std::terminate();
+    throw std::runtime_error("Could not open file: " + coordinates_filename + ".");
   }
   // Writes the header.
   coordinates_file << "# =~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=" << std::endl;
@@ -2598,7 +2605,8 @@ void embeddingS1_t::save_inferred_coordinates()
     if( !coordinates_file.is_open() )
     {
       std::cerr << "Could not open file: " << coordinates_filename << "." << std::endl;
-      std::terminate();
+      // std::terminate();
+      throw std::runtime_error("Could not open file: " + coordinates_filename + ".");
     }
     // Writes the hidden variables.
     it  = ordered_names.begin();
@@ -2854,7 +2862,8 @@ void embeddingS1_t::save_inferred_ensemble_characterization()
   if( !vertex_properties_file.is_open() )
   {
     std::cerr << "Could not open file: " << vertex_properties_filename << "." << std::endl;
-    std::terminate();
+    // std::terminate();
+    throw std::runtime_error("Could not open file: " + vertex_properties_filename + ".");
   }
   // Writes the header.
   vertex_properties_file << "#";
@@ -2952,7 +2961,8 @@ void embeddingS1_t::save_inferred_ensemble_characterization()
   if( !vertex_stat_file.is_open() )
   {
     std::cerr << "Could not open file: " << vertex_stat_filename << "." << std::endl;
-    std::terminate();
+    // std::terminate();
+    throw std::runtime_error("Could not open file: " + vertex_stat_filename + ".");
   }
   // Writes the header.
   vertex_stat_file << "#";
@@ -3046,7 +3056,8 @@ void embeddingS1_t::save_inferred_ensemble_characterization()
   if( !graph_stat_file.is_open() )
   {
     std::cerr << "Could not open file: " << graph_stat_filename << "." << std::endl;
-    std::terminate();
+    // std::terminate();
+    throw std::runtime_error("Could not open file: " + graph_stat_filename + ".");
   }
 
   // Writes the header.
@@ -3114,7 +3125,8 @@ void embeddingS1_t::save_inferred_theta_density()
   if( !theta_density_file.is_open() )
   {
     std::cerr << "Could not open file: " << theta_density_filename << "." << std::endl;
-    std::terminate();
+    // std::terminate();
+    throw std::runtime_error("Could not open file: " + theta_density_filename + ".");
   }
   theta_density_file << "#";
   theta_density_file << std::setw(width_values - 1) << "Theta"       << " ";
@@ -3265,7 +3277,8 @@ void embeddingS1_t::check_connected_components()
     if( !edgelist_file.is_open() )
     {
       std::cerr << "Could not open file: " << edgelist_filename << "." << std::endl;
-      std::terminate();
+      // std::terminate();
+      throw std::runtime_error("Could not open file: " + edgelist_filename + ".");
     }
 
     std::set<int>::iterator it, end;
@@ -3304,7 +3317,8 @@ void embeddingS1_t::check_connected_components()
     if(QUIET_MODE)  { std::clog << std::endl; }
     std::cerr << "Edges belonging to the largest component saved to " << edgelist_rootname + "_GC.edge. Please rerun the program using this new edgelist." << std::endl;
     std::cerr << std::endl;
-    std::terminate();
+    // std::terminate();
+    throw std::runtime_error("More than one component found. Please rerun the program using the largest component only.");
   }
 }
 
