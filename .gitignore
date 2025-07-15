@@ -9,13 +9,21 @@
 *.inf_vstat
 *.gen_coord
 
-mercator
 
 *.tar.gz
 
+# Ignore Python cache files
+__pycache__/
+
+# Ignore MacOS specific files
 *.DS_Store
 
+# Output files
+mercator
+
 *.o
+
+*.so
 
 *.out
 
@@ -25,3 +33,6 @@ mercator
 
 !setup.py
 !scripts/plot_validation_of_embedding.py
+
+# Ignore IDE and editor specific files
+/.idea
