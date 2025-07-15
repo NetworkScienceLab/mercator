@@ -31,6 +31,8 @@ mercator
 
 *.py
 
+/*.dSYM
+
 !setup.py
 !scripts/plot_validation_of_embedding.py
 
