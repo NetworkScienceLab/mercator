@@ -38,3 +38,6 @@ mercator
 
 # Ignore IDE and editor specific files
 /.idea
+
+# Ignore Python package metadata
+*.egg-info
